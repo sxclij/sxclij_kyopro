@@ -29,6 +29,7 @@ void ntable_set(int key, t_node* value) {
 }
 
 int main() {
+
     fflush(stdout);
     return 0;
 }
