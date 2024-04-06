@@ -4,8 +4,15 @@
 
 #define hashtable_size 100000000
 
+#define dx          \
+    (int32_t[]) {   \
+        0, 1, 0, -1 \
+    }
+#define dy          \
+    (int32_t[]) {   \
+        1, 0, -1, 0 \
+    }
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
@@ -26,6 +33,15 @@ struct task {
     int32_t x;
     int32_t y;
 };
+static struct task tasks[50000];
+static struct task* tasks_end = tasks;
+struct task tasks_pop() {
+    return *(--tasks_end);
+}
+void tasks_push(struct task task) {
+    *(tasks_end++) = task;
+}
+
 
 int main() {
 }
