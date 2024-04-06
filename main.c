@@ -1,35 +1,31 @@
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define ntable_size 1000000
+#define hashtable_size 100000000
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define input_int(x) \
-    int x;           \
-    scanf("%d", &x);
 
-typedef struct t_node {
-    int value;
-} t_node;
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 
-static t_node* ntable[ntable_size];
-
-unsigned int ntable_xorshift(unsigned int x) {
+static int32_t hashtable[hashtable_size];
+uint32_t hash(int32_t a) {
+    uint32_t x = 114514 + a;
     x ^= x << 13;
-    x ^= x >> 17;
-    x ^= x << 5;
+    x ^= x >> 7;
+    x ^= x << 17;
     return x;
 }
-t_node* ntable_get(int key) {
-    unsigned int i = ntable_xorshift(key);
-    return ntable[i % ntable_size];
+int32_t* hashtable_find(int32_t key) {
+    return &hashtable[hash(key) % hashtable_size];
 }
-void ntable_set(int key, t_node* value) {
-    unsigned int i = ntable_xorshift(key);
-    ntable[i % ntable_size] = value;
-}
+
+struct task {
+    int32_t score;
+    int32_t x;
+    int32_t y;
+};
 
 int main() {
-
-    fflush(stdout);
-    return 0;
 }
