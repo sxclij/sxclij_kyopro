@@ -1,8 +1,9 @@
+#pragma GCC optimize("O3")
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define hashtable_size 100000000
+#define hashtable_size (1 << 27)
 
 #define dx          \
     (int32_t[]) {   \
@@ -28,20 +29,19 @@ int32_t* hashtable_find(int32_t key) {
     return &hashtable[hash(key) % hashtable_size];
 }
 
-struct task {
+struct node {
     int32_t score;
     int32_t x;
     int32_t y;
 };
-static struct task tasks[50000];
-static struct task* tasks_end = tasks;
-struct task tasks_pop() {
-    return *(--tasks_end);
+static struct node nodes[50000];
+static struct node* nodes_end = nodes;
+struct node nodes_pop() {
+    return *(--nodes_end);
 }
-void tasks_push(struct task task) {
-    *(tasks_end++) = task;
+void nodes_push(struct node node) {
+    *(nodes_end++) = node;
 }
-
 
 int main() {
 }
