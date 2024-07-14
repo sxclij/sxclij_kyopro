@@ -3,7 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define hashtable_size (1 << 27)
+int main() {
+    uint32_t b[200000];
+    uint32_t n;
+    uint64_t ans = 0;
+    scanf("%u", &n);
+    rep(i, n) {
+        uint32_t a;
+        scanf("%u", &a);
+        ans += a;
+        b[i] = a;
 
 #define dx          \
     (int64_t[]) {   \
