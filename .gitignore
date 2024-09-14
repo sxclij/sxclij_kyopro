@@ -1,5 +1,4 @@
-*
-!LICENCE
-!main.c
-!main.cpp
-!archive
+.devcontainer
+.github
+.vscode
+.main
