@@ -39,5 +39,4 @@ void quicksort(int a[], int left, int right) {
 }
 
 int main() {
-    return 0;
 }
