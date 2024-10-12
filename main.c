@@ -1,4 +1,8 @@
 // stdioのみmalloc不使用オーガニック縛り
+#pragma GCC target("avx2")
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
+
 #include <stdio.h>
 
 int med3(int x, int y, int z) {
@@ -39,5 +43,22 @@ void quicksort(int a[], int left, int right) {
 }
 
 int main() {
+    int n;
+    char s[300000];
+    int ans = 0;
+
+    for (int i = 0; i < 300000; i++) {
+        s[i] = '.';
+    }
+    scanf("%d", &n);
+    scanf("%s", s);
+
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '#' && s[i + 1] == '.' && s[i + 2] == '#') {
+            ans++;
+        }
+    }
+    printf("%d", ans);
+
     return 0;
 }
