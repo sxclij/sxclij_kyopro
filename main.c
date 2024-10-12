@@ -3,6 +3,7 @@
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 
+#include <math.h>  // この問題、縛り無理ゲーで草
 #include <stdio.h>
 
 int med3(int x, int y, int z) {
@@ -44,21 +45,21 @@ void quicksort(int a[], int left, int right) {
 
 int main() {
     int n;
-    char s[300000];
-    int ans = 0;
-
-    for (int i = 0; i < 300000; i++) {
-        s[i] = '.';
-    }
     scanf("%d", &n);
-    scanf("%s", s);
 
+    static double x[300000], y[300000];
     for (int i = 0; i < n; i++) {
-        if (s[i] == '#' && s[i + 1] == '.' && s[i + 2] == '#') {
-            ans++;
-        }
+        scanf("%lf %lf", &x[i + 1], &y[i + 1]);
     }
-    printf("%d", ans);
+
+    double ans = 0;
+    for (int i = 0; i < n + 2; i++) {
+        double dx = x[i] - x[i + 1];
+        double dy = y[i] - y[i + 1];
+        double x = dx * dx + dy * dy;
+        ans += sqrt(x);
+    }
+    printf("%lf\n", ans);
 
     return 0;
 }
