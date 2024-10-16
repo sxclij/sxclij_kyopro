@@ -1,4 +1,3 @@
-// stdioのみmalloc不使用オーガニック縛り
 #include <stdio.h>
 #pragma GCC target("avx2")
 #pragma GCC optimize("O3")
