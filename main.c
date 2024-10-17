@@ -5,4 +5,5 @@
 #pragma GCC optimize("unroll-loops")
 
 int main() {
+    return 0;
 }
