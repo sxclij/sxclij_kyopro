@@ -17,28 +17,34 @@ int main() {
     ll start_muki;
 
     char t1;
-    char s[1002][1002] = {'#'};
-    ll cost[1002][1002] = {1000000};
+    static char s[1002][1002];
+    static ll cost[1002][1002];
+    ll ans = 1000000;
+    rep(i, h + 2) rep(j, w + 2) {
+        s[i][j] = '#';
+        cost[i][j] = 1000000;
+    }
     rep(i, h) rep(j, w) {
         cin >> t1;
         s[i + 1][j + 1] = t1;
         if (t1 == 'S') {
             task.push_back(make_pair(i + 1, j + 1));
-            start_muki = i + 1 + j + 1 % 2;
+            start_muki = (i + 1 + j + 1) % 2;
+            cost[i + 1][j + 1] = 0;
         }
     }
     while (task.size() != 0) {
         pi current_src = task.back();
         task.pop_back();
         if (s[current_src.first][current_src.second] == 'G') {
-            cout << cost[current_src.first][current_src.second] << end;
-            ;
-            return 0;
+            if (ans > cost[current_src.first][current_src.second]) {
+                ans = cost[current_src.first][current_src.second];
+            }
         }
         ll current_score = cost[current_src.first][current_src.second] + 1;
         pi current_dst1;
         pi current_dst2;
-        if (current_src.first + current_src.second % 2 == start_muki) {
+        if ((current_src.first + current_src.second) % 2 != start_muki) {
             current_dst1 = make_pair(current_src.first, current_src.second + 1);
             current_dst2 = make_pair(current_src.first, current_src.second - 1);
         } else {
@@ -47,14 +53,18 @@ int main() {
         }
         ll current_best1 = cost[current_dst1.first][current_dst1.second];
         ll current_best2 = cost[current_dst2.first][current_dst2.second];
-        if (current_score > current_best1 && s[current_dst1.first][current_dst1.second] != '#') {
+        if (current_score < current_best1 && s[current_dst1.first][current_dst1.second] != '#') {
             task.push_back(current_dst1);
             cost[current_dst1.first][current_dst1.second] = current_score;
         }
-        if (current_score > current_best2 && s[current_dst2.first][current_dst2.second] != '#') {
+        if (current_score < current_best2 && s[current_dst2.first][current_dst2.second] != '#') {
             task.push_back(current_dst2);
             cost[current_dst2.first][current_dst2.second] = current_score;
         }
     }
-    cout << (ll)(-1) << endl;
+    if (ans == 1000000) {
+        cout << -1 << endl;
+    } else {
+        cout << ans << endl;
+    }
 }
