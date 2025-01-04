@@ -21,9 +21,28 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll l, r;
-    cin >> l >> r;
-    ll l_ans = f1(l);
-    ll r_ans = f1(r);
-    cout << r_ans - l_ans << endl;
+    ll h, w;
+    cin >> h >> w;
+
+    vector<pi> task;
+
+    char t1;
+    char s[1002][1002] = {'#'};
+    ll best[1002][1002] = {1000000};
+    rep(i, h) rep(j, w) {
+        cin >> t1;
+        s[i + 1][j + 1] = t1;
+        if (t1 == 'S') {
+            task.push_back(make_pair(i + 1, j + 1));
+        }
+    }
+    while (task.size() != 0) {
+        pi current_src = task.back();
+        task.pop_back();
+        pi current_dst1 = make_pair(current_src.first + 1, current_src.second);
+        pi current_dst2 = make_pair(current_src.first - 1, current_src.second);
+        ll current_best1 = best[current_dst1.first][current_dst1.second];
+        ll current_score = best[current_src.first][current_src.second] + 1;
+        if ()
+    }
 }
